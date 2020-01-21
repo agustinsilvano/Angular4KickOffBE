@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Angular4KickOffBE.DTO;
 using Angular4KickOffBE.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -24,9 +25,9 @@ namespace Angular4KickOffBE.Controllers
             _feedService = fs;
         }
 
-        [HttpGet]
+        [HttpGet,HttpOptions]
         [AllowAnonymous]
-        //ProducesResponseType(200, Type = typeof(IList<FeedDTO>))]
+        [ProducesResponseType(200, Type = typeof(IList<FeedDTO>))]
         //[Produces("application/json")]
         public IActionResult Get()
         {
@@ -35,6 +36,13 @@ namespace Angular4KickOffBE.Controllers
             IList<FeedDTO> feeds = _feedService.GetFeeds();
 
             return Ok(feeds);
+        }
+
+        [HttpGet("test")]
+        [ProducesResponseType(200,Type= typeof(string))]
+        public IActionResult Test()
+        {
+            return Ok("Hola.");
         }
     }
 }

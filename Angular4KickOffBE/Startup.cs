@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,15 +31,18 @@ namespace Angular4KickOffBE
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IFeedService, FeedService>();
+            services.AddSingleton<IFeedService, FeedService>();
 
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
+                    builder => builder
+                    .WithOrigins("http://localhost:4200")
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
+
+             services.AddAuthentication(IISDefaults.AuthenticationScheme);
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
@@ -60,9 +64,9 @@ namespace Angular4KickOffBE
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -72,8 +76,9 @@ namespace Angular4KickOffBE
 
             app.UseCors("CorsPolicy");
 
-            app.UseMvc();
+            app.UseHttpsRedirection();
 
+            app.UseMvc();
         }
     }
 }

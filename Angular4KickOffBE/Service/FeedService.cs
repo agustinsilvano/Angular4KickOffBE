@@ -30,7 +30,7 @@ namespace Angular4KickOffBE.Service
             {
                 Id = FeedService.Id,
                 Title = "Vuelta al laburo",
-                Content = "Estamos yendo a laburar."
+                Content = "Estamos yendo a laburar. Coso!" 
             };
 
             FeedService.Id++;
