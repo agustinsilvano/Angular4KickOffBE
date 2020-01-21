@@ -11,7 +11,7 @@ namespace Angular4KickOffBE.Service
     {
         public static int Id = 1;
 
-        public IList<FeedDTO> GetFeeds()
+        public IList<FeedDTO> GetFeeds(int feedId)
         {
             IList<FeedDTO> result = new List<FeedDTO>();
 
@@ -47,6 +47,11 @@ namespace Angular4KickOffBE.Service
             FeedService.Id++;
 
             result.Add(f3);
+            
+            if (feedId > 0)
+            {
+                result = result.Where(f => f.Id == feedId).ToList(); 
+            }
 
             return result;
         }

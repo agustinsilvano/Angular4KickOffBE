@@ -8,6 +8,6 @@ namespace Angular4KickOffBE.Service.Interface
 {
     public interface IFeedService
     {
-        public IList<FeedDTO> GetFeeds();
+        public IList<FeedDTO> GetFeeds(int feedId);
     }
 }

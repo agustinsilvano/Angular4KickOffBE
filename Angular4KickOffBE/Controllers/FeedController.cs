@@ -25,15 +25,15 @@ namespace Angular4KickOffBE.Controllers
             _feedService = fs;
         }
 
-        [HttpGet,HttpOptions]
+        [HttpGet, HttpOptions]
         [AllowAnonymous]
         [ProducesResponseType(200, Type = typeof(IList<FeedDTO>))]
         //[Produces("application/json")]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] int feedId )
         {
             _logger.LogInformation("Lista de feeds solicitada.");
 
-            IList<FeedDTO> feeds = _feedService.GetFeeds();
+            IList<FeedDTO> feeds = _feedService.GetFeeds(feedId);
 
             return Ok(feeds);
         }
