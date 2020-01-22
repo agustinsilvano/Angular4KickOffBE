@@ -32,6 +32,7 @@ namespace Angular4KickOffBE
         {
             services.AddControllers();
             services.AddSingleton<IFeedService, FeedService>();
+            services.AddSingleton<ILandingService, LandingService>();
 
             services.AddCors(options =>
             {
@@ -46,15 +47,6 @@ namespace Angular4KickOffBE
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
-
-        //services.AddCors(options =>
-        //{
-        //    options.AddPolicy(MyAllowSpecificOrigins,
-        //    builder =>
-        //    {
-        //        builder.WithOrigins("http://localhost:4200").AllowAnyHeader();
-        //    });
-        //});
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
