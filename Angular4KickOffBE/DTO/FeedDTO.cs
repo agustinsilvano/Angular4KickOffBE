@@ -11,6 +11,8 @@ namespace Angular4KickOffBE.DTO
         public string Title { get; set; }
         public string Content { get; set; }
 
+        public string SLA { get; set; }
+
         //ctor
         public FeedDTO() { }
 

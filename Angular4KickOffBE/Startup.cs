@@ -18,14 +18,17 @@ namespace Angular4KickOffBE
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             Configuration = configuration;
+            Env = webHostEnvironment;
         }
 
-       // readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        // readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public IConfiguration Configuration { get; }
+
+        public IWebHostEnvironment Env { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -46,6 +49,15 @@ namespace Angular4KickOffBE
              services.AddAuthentication(IISDefaults.AuthenticationScheme);
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            IMvcBuilder builder = services.AddRazorPages();
+
+//#if DEBUG
+//            if (Env.IsDevelopment())
+//            {
+                builder.AddRazorRuntimeCompilation();
+//            }
+//#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

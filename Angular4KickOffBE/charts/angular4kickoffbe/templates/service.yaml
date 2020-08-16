@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "angular4kickoffbe.fullname" . }}
+  labels:
+    app: {{ template "angular4kickoffbe.name" . }}
+    chart: {{ template "angular4kickoffbe.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "angular4kickoffbe.name" . }}
+    release: {{ .Release.Name }}

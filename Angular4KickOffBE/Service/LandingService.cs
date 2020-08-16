@@ -16,13 +16,13 @@ namespace Angular4KickOffBE.Service
             LandingDTO e1 = new LandingDTO
             {
                 Title = "Google",
-                Description = "Primer elemento!",
+                Description = "Primer elemento !",
                 Url = @"https://s5.eestatic.com/2015/10/03/actualidad/Actualidad_68753203_129196255_1024x576.jpg"
             };
 
             res.Add(e1);
 
-            LandingDTO e2 = new LandingDTO
+                LandingDTO e2 = new LandingDTO
             {
                 Title = "Yahoo",
                 Description = "Segundo elemento!",
