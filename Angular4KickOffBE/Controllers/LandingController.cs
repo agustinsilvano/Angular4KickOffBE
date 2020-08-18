@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Angular4KickOffBE.DTO;
 using Angular4KickOffBE.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
